@@ -1,108 +1,76 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        
-        <title>Bootstrap Example</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-      </head>  
-    <style>
-        table,th,td {
-  border : 2px solid red;
-  border-collapse: collapse;
+<html lang="en">
+<head>
+  <style>
+ nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #ccc;
+  padding: 20px;
+  grid-area: nav;
+
+}
+
   
+  
+    input[type=submit] {
+      width: 25%;
+      background-color: #af4c4c;
+      color: white;
+      padding: 5px 5px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 1px;
+      cursor: pointer;
+      
+    }
+  
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    div {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    .left{
+	width:30%;
+	height:200px;
+	float:left;
+	background:#333;
 }
-    </style>
+
+  </style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Users</title>
+	<link rel="stylesheet" href="Untitled-1.css" />
+</head>
 <body>
-     
+	<main>
+		<div class="list" id="list"></div>
+		<div class="pagenumbers" id="pagination"></div>
     <table id="contry"></table>
-</div>
-<div class="col-lg-6 col-md-6 col-xs-12">
-    <div class="col-lg-2 col-md-2 col-xs-6">
-	<button class="col-lg-12 col-xs-12 bgColor" id="PreValue">Pre</button>
-	</div class = 'btn'>
-	<div class="col-lg-2  col-md-2 col-xs-6">
-	<button class="col-lg-12 col-xs-12 bgColor" id="nextValue">Next</button>
-	</div>	
-</div>
-</body>    
+
+  </main>
+
+
+  <div id = "left">
+   <ul><input type="text" id="cname" name="name" placeholder="contry name.."></ul> 
+    <label for="lname"></label>
+   <ul> <input type="text" id="code" name="alpha 2 code" placeholder="alpha 2 code"></ul>
+   <ul>
+    <input type="number" id="population" name=" popu" placeholder="population">
+
+   </ul>
+   <ul>    <input type="text" id="capital" name="capital" placeholder="capital">
+   </ul>
+    <ul>
+      <input type="submit" id="add" value="Submit">
+    </ul>
+
+  </div>
+	<script src="ajax.js"></script>
+</body>
 </html>
-
-<script>
-  printtable();
-    function printtable(){
-    var myRequset= new XMLHttpRequest();
-    myRequset.onreadystatechange = function (){
-                if(this.readyState === 4 && this.status === 200){
-              
-//convert responsed text to JS object
-var myJsobject = JSON.parse(this.responseText);
-                        mytext= '';
-                        let table="<tr><th>Contry</th><th>alpha 2 code</th><th>population </th><th>capital</th></tr>";
-                        const item = document.getElementById('myJsobject');
-                        $(document).ready(function(){
-				var table =  $('#contry');
-
-				var max_size=myJsobject.length;
-				var sta = 0;
-				var elements_per_page = 10;
-				var limit = elements_per_page;
-				goFun(sta,limit);
-				function goFun(sta,limit){
-					for(var i=sta;i<limit;i++){
-					var tab='<tr><td>'+myJsobject[i].name+"\n"+'</td><td>'+myJsobject[i].alpha2Code+"\n"+'</td><td>'+myJsobject[i].population+"\n"+'</td><td>'
-		
-                    +myJsobject[i].capital+"\n"+'</td></tr>';
-
-					 $('#contry').append(tab)
-					}
-				}
-				$('#nextValue').click(function(){
-					var next = limit;
-					if(max_size>=next) {
-					limit = limit+elements_per_page;
-					table.empty();
-					goFun(next,limit);
-					}
-				});
-				  $('#PreValue').click(function(){
-					var pre = limit-(2*elements_per_page);
-					if(pre>=0) {
-					limit = limit-elements_per_page;
-					table.empty();
-					goFun(pre,limit); 
-					}
-				});
-});
-                        console.log(myJsobject.length);
-                    var a = document.getElementsByClassName("contry");
-              //      $(contry).find('tbody').append("<tr><td>aaaa</td></tr>");
-
-/*var max_size=250;
-var sta = 0;
-var elements_per_page = 10;
-var docFrag = document.createDocumentFragment();
-for (var i=0; i < 25; i++){
-     var elem = document.createElement('input');
-     elem.type = 'button';
-     elem.value = i;
-     docFrag.appendChild(elem);
-}
-document.body.appendChild(docFrag);*/
-
-}
-
-    };
-
-    myRequset.open("GET","https://restcountries.eu/rest/v2/all");
-    myRequset.send();
-}
-function disblay(){
-
-}
-</script>
-
