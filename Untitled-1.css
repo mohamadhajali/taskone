@@ -54,7 +54,7 @@ main .list .item:hover {
 }
 
 .pagenumbers button {
-	width: 10px;
+	width: 25px;
 	height: 25px;
 
 	appearance: none;
@@ -64,7 +64,7 @@ main .list .item:hover {
 
 	background-color: #44AAEE;
 
-	margin: 5px;
+	margin: 25px;
 	transition: 0.4s;
 	color: #FFF;
 	font-size: 18px;
